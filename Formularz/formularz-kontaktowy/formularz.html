@@ -1,0 +1,343 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>     
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+	.form {
+        margin:3rem auto;
+		font-family:sans-serif;
+        max-width:40rem;
+	}
+	.form .form-row {
+        margin-bottom:1rem;
+    }
+    .form .form-row:last-child {
+        margin-bottom: 0;
+    }
+    .form input[type=text],
+    .form input[type=email],
+    .form textarea,
+    .form .checkbox-cnt .state {
+        box-shadow:inset 0 1px 5px rgba(0,0,0,0.07);
+    }
+	.form input[type=text], 
+	.form input[type=email],
+    .form textarea {
+        border-radius:0.2rem;
+        font-family:sans-serif;
+		padding:0.8rem;
+		border:1px solid #aaa;
+        display: block;
+        width:100%;
+        color:#666;
+	}
+    .form input[type=text]:focus,
+    .form input[type=email]:focus,
+    .form textarea:focus {
+        border-color:#9DC9F5;
+        box-shadow:inset 0 0 0 1px #9DC9F5, inset 0 1px 5px rgba(0,0,0,0.07);
+        outline:none;
+    }
+    .form textarea {
+        height:10rem;
+    }
+	.form label {
+        font-weight:bold;
+		display: block;
+		font-size:0.9rem;
+		margin-bottom:0.5rem;
+	}
+    .form .submit-btn {
+        font-family: sans-serif;
+        padding:1rem 2rem;
+        background: #70B81B;
+        border:0;
+        border-radius:0.2rem;
+        color:#fff;
+        font-size:1.1rem;
+        font-weight: bold;
+        transition: 0.3s background-color;
+        cursor: pointer;
+    }
+    .form .submit-btn:hover {
+        background: #7EC927;
+    }
+    .form .checkbox-cnt {
+        padding-left:3rem;
+        position: relative;
+        font-weight: normal;
+        font-size:0.85rem;
+        line-height: 1.1rem;
+        color:#444;
+        cursor: pointer;
+    }
+    .form .checkbox-cnt .state {
+        width:2rem;
+        height: 2rem;
+        display: block;
+        position: absolute;
+        left:0;
+        top:0;
+        border:1px solid #aaa;
+        border-radius:0.2rem;
+    }
+    .form .checkbox-cnt .state:before {
+        width:1rem;
+        height: 1rem;
+        border-radius:0.2rem;
+        background: #70B81B;
+        display: block;
+        position: absolute;
+        left:50%;
+        top:50%;
+        content:'';
+        transform:translate(-50%, -50%) scale(1);
+        opacity:0;
+    }
+    .form .checkbox-cnt input:checked ~ .state:before {
+        animation: checkboxShowAnim 0.5s 1;
+        opacity: 1;
+    }
+    .form .checkbox-cnt input {
+        position:absolute;
+        top:0; left:0;
+        width:2rem;
+        height: 2rem;
+        z-index: 2;
+        cursor:pointer;
+        padding:0;
+        margin:0;
+        opacity: 0;
+    }
+    .form input[type=text].error,
+    .form input[type=email].error,
+    .form textarea.error,
+    .form .checkbox-cnt input.error ~ .state {
+        border-color:#E01546;
+    }
+    .field-error {
+        color:#E01546;
+        padding:0.5rem 0;
+        font-size:0.8rem;
+    }
+    @keyframes checkboxShowAnim {
+        0%  { border-radius:50%; transform:translate(-50%, -50%) scale(0.2); }
+        50% { transform:translate(-50%, -50%) scale(1.2); }
+        100% { transform:translate(-50%, -50%) scale(1); }
+    }
+
+    .element-is-busy {
+        position: relative;
+        pointer-events: none;
+        opacity:0.5;
+    }
+    .element-is-busy::after {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        border-right-color: rgba(0,0,0,0.7);
+        transform: translate(-50%, -50%) rotate(0deg);
+        content:'';
+        animation: rotateSingleLoading 0.3s infinite linear;
+        z-index: 100;
+    }
+    @keyframes rotateSingleLoading {
+        from {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
+    .form .send-error {
+        display:inline-block;
+        font-family: sans-serif;
+        font-size:0.9rem;
+        padding:1rem 1.5rem;
+        color:#E01546;
+    }
+    .form-send-success {
+        font-family: sans-serif;
+        text-align:center;
+        font-size:2rem;
+        font-weight:bold;
+        border:1px solid #eee;
+        color:#333;
+        padding:10rem 0;
+        margin:3rem auto;
+        max-width:40rem;
+    }
+    .form-send-success strong {
+        display:block;
+        margin-bottom:0.5rem;
+    }
+    .form-send-success span {
+        font-size:1rem;
+        color:#888;
+        font-weight:normal;
+        display: block;
+    }
+    @media screen and (max-width:500px) {
+        .form .submit-btn {
+            display: block;
+            width: 100%;
+        }
+        .form .send-error {
+            text-align:center;
+            display: block;
+        }
+    }
+</style>
+<body>
+
+<form class="form" id="contactForm" method="post" novalidate action="/send-script.php">
+    <div class="form-row">
+        <label for="field-name">Name*</label>
+        <input type="text" name="name" required id="field-name" data-error="Wypełnij to pole" pattern="[a-zA-ZąĄććęęłŁńŃóÓśŚżŻŹŹ ]+">
+    </div>
+    <div class="form-row">
+        <label for="field-email">Email*</label>
+        <input type="email" name="email" required id="field-email" data-error="Wpisz poprawny email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+    </div>
+    <div class="form-row">
+        <label for="field-message">Message*</label>
+        <textarea name="message" required data-error="Musisz wypełnić pole" id="field-message" pattern=".+"></textarea>
+    </div>
+    <div class="form-row">
+        <label class="checkbox-cnt">
+            <input type="checkbox" required data-error="Musisz wypełnić pole" name="regulation">
+            <i class="state" aria-hidden="true"></i>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In libero arcu, vulputate sit amet mattis sit amet, ultrices in erat. Aenean suscipit arcu ac lorem lacinia ut scelerisque turpis commodo.</span>
+        </label>
+    </div>
+    <div class="form-row">
+        <button type="submit" class="submit-btn">
+            Wyślij
+        </button>
+    </div>
+</form>
+
+<script>
+    $(function() {
+        var $inputs = $('form input[required], form textarea[required], select[required]');
+
+        var displayFieldError = function($elem) {
+            var $fieldRow = $elem.closest('.form-row');
+            var $fieldError = $fieldRow.find('.field-error');
+            if (!$fieldError.length) {
+                var errorText = $elem.attr('data-error');
+                var $divError = $('<div class="field-error">' + errorText + '</div>');
+                $fieldRow.append($divError);
+            }
+        };
+
+        var hideFieldError = function($elem) {
+            var $fieldRow = $elem.closest('.form-row');
+            var $fieldError = $fieldRow.find('.field-error');
+            if ($fieldError.length) {
+                $fieldError.remove();
+            }
+        };
+
+        $inputs.on('input', function() {
+            var $elem = $(this);
+            if (!$elem.get(0).checkValidity()) {
+                $elem.addClass('error');
+            } else {
+                $elem.removeClass('error');
+                hideFieldError($elem);
+            }
+        });
+
+        $inputs.filter(':checkbox').on('click', function() {
+            var $elem = $(this);
+            var $row = $(this).closest('.form-row');
+            if ($elem.is(':checked')) {
+                $elem.removeClass('error');
+                hideFieldError($elem);
+            } else {
+                $elem.addClass('error');
+            }
+        });
+
+        var checkFieldsErrors = function() {
+            //ustawiamy zmienną na true. Następnie robimy pętlę po wszystkich polach
+            //jeżeli któreś z pól jest błędne, przełączamy zmienną na false.
+            var fieldsAreValid = true;
+            $inputs.each(function(i, elem) {
+                var $elem = $(elem);
+                //if (new RegExp(pattern).test($elem.val())) {
+                if (elem.checkValidity()) {
+                    hideFieldError($elem);
+                    $elem.removeClass('error');
+                } else {
+                    displayFieldError($elem);
+                    $elem.addClass('error');
+                    fieldsAreValid = false;
+                }
+            });
+            return fieldsAreValid;
+        };
+
+        $('.form').on('submit', function(e) {
+            e.preventDefault();
+
+            var $form = $(this);
+
+            if (checkFieldsErrors()) {
+                var dataToSend = $form.serializeArray();
+                dataToSend = dataToSend.concat(
+                    $form.find('input:checkbox:not(:checked)').map(function() {
+                        return {"name": this.name, "value": this.value}
+                    }).get()
+                );
+
+                var $submit = $form.find(':submit');
+                $submit.prop('disabled', 1);
+                $submit.addClass('element-is-busy');
+
+                $.ajax({
+                    url : $form.attr('action'),
+                    method: $form.attr('method'),
+                    dataType : 'json',
+                    data : dataToSend,
+                    success: function(ret) {
+                        if (ret.errors) {
+                            ret.errors.map(function(el) {
+                                return '[name="'+el+'"]'
+                            });
+                            checkFieldsErrors($form.find(ret.errors.join(',')));
+                        } else {
+                            if (ret.status=='ok') {
+                                $form.replaceWith('<div class="form-send-success"><strong>Wiadomość została wysłana</strong><span>Dziękujemy za kontakt. Postaramy się odpowiedzieć jak najszybciej</span></div>');
+                            }
+                            if (ret.status=='error') {
+                                $submit.after('<div class="send-error">Wysłanie wiadomości się nie powiodło</div>');
+                            }
+                        }
+                    },
+                    error : function() {
+                        console.error('Wystąpił błąd z połączeniem');
+                    },
+                    complete: function() {
+                        $submit.prop('disabled', 0);
+                        $submit.removeClass('element-is-busy');
+                    }
+                });
+            }
+        })
+    })
+</script>
+</body>
+</html>
