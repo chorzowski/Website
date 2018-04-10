@@ -1,12 +1,16 @@
 <?php
-$mailToSend = 'xxxxx@wp.pl';
+$mailToSend = 'chorzowski3@gmail.com';
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	$name       = $_POST['name'];
 	$email      = $_POST['email'];
 	$message    = $_POST['message'];
+	$antiSpam   = $_POST['honey'];
 	$regulation = $_POST['regulation'];
 	$errors     = Array();
 	$return     = Array();
+	
+	if (empty($antiSpam)) {
+	
 	if ( empty( $name ) ) {
 		array_push( $errors, 'name' );
 	}
@@ -54,4 +58,5 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 
 	header( 'Content-Type: application/json' );
 	echo json_encode( $return );
+}
 }

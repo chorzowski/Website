@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 
-<html lang="pl">
+<html lang="en">
 	<head>
 	<meta charset="utf-8"/>
 	<meta name="description" content="Very reliable, low cost and quality proven transportation by 
 	katowiceairporttransfer. Our company is a private taxi service that gives you a quick and easy way to get 
 	to and from Pyrzowice airport. We specialised in 24Hrs airport transfer service to and from Katowice Airport
 	by comfortable cars and competitive prices."</>
+	<meta name="keywords" content="Katowice, Airport, Taxi, Transfer"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>   
@@ -35,7 +36,7 @@
 						<article id="first">
 							<h2>What airport taxi katowice do ?</h2>
 							<figure>
-								<img src="Pictures/F100009096 — kopia.jpg">
+								<img src="Pictures/Katowice-Airport-Taxi-Airplane.jpg" alt="Katowice Airport Taxi">
 								<figcaption>Katowice Airport Taxi</figcaption>
 							</figure>
 							<p>London private taxi car company. We specialize in airport taxi transfers to and 
@@ -77,6 +78,10 @@
         <label for="field-message">Message*</label>
         <textarea name="message" required data-error="Musisz wypełnić pole" id="field-message" pattern=".+"></textarea>
     </div>
+	<span class="form-row honey-row">
+		<label for="honey">Jeżeli jesteś człowiekiem, nie wypełniaj tego pola</label>
+		<input type="text" name="honey">
+	</span>
     <div class="form-row">
         <label class="checkbox-cnt">
             <input type="checkbox" required data-error="Musisz wypełnić pole" name="regulation">
@@ -89,6 +94,7 @@
             Send
         </button>
     </div>
+	
 </form>
 					
 					
@@ -182,8 +188,10 @@
                 var $submit = $form.find(':submit');
                 $submit.prop('disabled', 1);
                 $submit.addClass('element-is-busy');
-
-                $.ajax({
+				
+				
+                
+				$.ajax({
                     url : $form.attr('action'),
                     method: $form.attr('method'),
                     dataType : 'json',
@@ -215,7 +223,7 @@
         })
     })
 		
-		
+		</script>
 	</body>
 </html>
 	
