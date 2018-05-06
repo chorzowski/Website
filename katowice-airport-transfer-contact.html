@@ -1,23 +1,13 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="pl">
 	<head>
 	<meta charset="utf-8"/>
-	<meta name="description" content="Very reliable, low cost and quality katowiceairporttransfer. 
-	Our company is a private taxi service that gives you a quick and easy way to get to and from 
-	Pyrzowice Airport. We specialize in 24Hrs airport transfer service to and from Katowice Airport."</>
-	<meta name="keywords" content="Katowice, Airport, Taxi, Transfer"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">       
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117355967-1"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'UA-117355967-1');
-	</script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>   
+	<meta name="description" content="Do You need transport from the Airport? 
+	Contact Katowice Airport Transfer! We'll get you wherever you want."</>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>   
 	<link rel="stylesheet" href="CSS/Style.css">
 	<title>Katowice airport taxi</title>
 	</head>
@@ -40,26 +30,14 @@
 				<div class="mainContent">
 					<section>
 						<article id="first">
-							<h2>What airport taxi katowice do ?</h2>
+							<h2>24/7 Support</h2>
 							<figure>
-								<img src="Pictures/Katowice-Airport-Taxi-Airplane.jpg" alt="Katowice Airport Taxi">
-								<figcaption>Katowice Airport Taxi</figcaption>
+								<img src="Pictures/Katowice-Airport-Taxi-Airplane.jpg" alt="Katowice Airport Transfer">
+								<figcaption>Katowice Airport Transfer</figcaption>
 							</figure>
-							<p>Katowice private taxi car company. We specialize in airport taxi transfers to and 
-							from Katowice "Pyrzowice" Airport for both individuals and groups, with the accent 
-							on a courteous, professional and personal service at affordable prices.</p><p>Our most 
-							important priority is making sure that our customers are experiencing safe and 
-							reliable services. Hence we provide high quality, professional services since 2009. 
-							We pride ourselves for our punctuality, all our airport transfers are guaranteed for
-							on time picks up.</p><p>Passenger transport services at very competitive prices. We will 
-							take you to your desired destination in a wide range of our chauffeur- driven cars 
-							whether you are travelling for business or pleasure. We also provide transfer 
-							services for business use and private events such as meetings, conferences, 
-							sightseeing and private tours. Our aim is to offer the best reliable and safest 
-							transport service to all our customers at a competitive price. In addition, we pride
-							ourselves on offering the absolute best service and value for money. We have 
-							transferred a large number of fulfilled clients, our high extent of repeat bookings 
-							show of this. Our point is to live up to your desires as well as to surpass them.</p>
+							<p>Live agents (actual person - no robots) on the phone to hear your needs.</p>
+							<p>+48 662206169</p>
+							<p>adrian.janowski@yahoo.com <a href="https://www.facebook.com/Katowice-Airport-Transfer-426109534523126"><img style="width: 25px; margin-left:20px;" src="Pictures/square.png"></a></p>
 						</article>
 						
 					</section>
@@ -80,11 +58,11 @@
         <label for="field-email">Email*</label>
         <input type="email" name="email" required id="field-email" data-error="Wpisz poprawny email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
     </div>
-	<div class="form-row">
+    <div class="form-row">
         <label for="field-number">Telephone number*</label>
         <input type="number" name="number" required id="field-number" data-error="Wpisz numer telefonu">
     </div>
-    <div class="form-row">
+	<div class="form-row">
         <label for="field-message">Message*</label>
         <textarea name="message" required data-error="Musisz wypełnić pole" id="field-message" pattern=".+"></textarea>
     </div>
@@ -92,15 +70,11 @@
 		<label for="honey">Jeżeli jesteś człowiekiem, nie wypełniaj tego pola</label>
 		<input type="text" name="honey">
 	</span>
-    
-	
-	
     <div class="form-row">
         <button type="submit" class="submit-btn">
             Send
         </button>
     </div>
-	
 </form>
 					
 					
@@ -194,10 +168,8 @@
                 var $submit = $form.find(':submit');
                 $submit.prop('disabled', 1);
                 $submit.addClass('element-is-busy');
-				
-				
-                
-				$.ajax({
+
+                $.ajax({
                     url : $form.attr('action'),
                     method: $form.attr('method'),
                     dataType : 'json',
