@@ -3,6 +3,7 @@ $mailToSend = 'chorzowski3@gmail.com';
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	$name       = $_POST['name'];
 	$email      = $_POST['email'];
+	$number     = $_POST['number'];
 	$message    = $_POST['message'];
 	$antiSpam   = $_POST['honey'];
 	$regulation = $_POST['regulation'];
@@ -17,12 +18,13 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	if ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
 		array_push( $errors, 'email' );
 	}
+	if ( empty( $number ) ) {
+		array_push( $errors, 'number' );
+	}
 	if ( empty( $message ) ) {
 		array_push( $errors, 'message' );
 	}
-	if ( empty( $regulation ) ) {
-		array_push( $errors, 'regulation' );
-	}
+	
 
 	if ( count( $errors ) > 0 ) {
 		$return['errors'] = $errors;
@@ -30,6 +32,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 		$headers = 'MIME-Version: 1.0' . "\r\n";
 		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 		$headers .= 'From: ' . $email . "\r\n";
+		$headers .= 'Number: ' . $number . "\r\n";
 		$headers .= 'Reply-to: ' . $email;
 		$message = "
 			<html>
@@ -43,6 +46,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 			</style>
 			<body>
 			<div>Imię: <strong>$name</strong></div>
+			<div>Numer telefonu: <strong>$number</strong></div>
 			<div>Email: <a href=\"mailto:$email\">$email</a></div>
 			<div class=\"msg-title\"> <strong>Wiadomość:</strong></div>
 			<div>$message</div>

@@ -1,0 +1,7 @@
+background: url("../Pictures/photo-1447622919665-d95b0d80b251.jpg");
+	background-size: contain;
+	position: fixed;
+    background-repeat: no-repeat;
+
+
+background: url("../Pictures/photo-1447622919665-d95b0d80b251.jpg");

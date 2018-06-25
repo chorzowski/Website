@@ -11,21 +11,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>   
 	<link rel="stylesheet" href="CSS/Style.css">
-	<title>Webside Plus</title>
+	<title>Katowice airport taxi</title>
 	</head>
 	<body>
 		<div class="container">
 			<header>
 				<div class="title">
-					<h1>Modern websites</h1>
+					<h1>Katowice Airport Transfer</h1>
 				</div>
 			<nav>
 				<ul>
 					<li class="home"><a href="index.html"><span>Home</span></a></li>
-					<li class="oferta"><a href="oferta.html"><span>Airport Transfer</span></a></li>
 					<li class="kariera"><a href="city-tours-katowice.html"><span>City Tours</span></a></li>
-					<li class="dlaczego_my"><a href="dlaczego_my.html"><span>Why Us</span></a></li>
-					<li class="kontakt"><a href="kontakt.html"><span>Contact Us</a></span></li>
+					<li class="dlaczego_my"><a href="why-katowice-airport-transfer.html"><span>Why Us</span></a></li>
+					<li class="kontakt"><a href="katowice-airport-transfer-contact.html"><span>Contact Us</a></span></li>
 				</ul>
 			</nav>
 			</header>
@@ -41,6 +40,7 @@
 							<p>Live agents (actual person - no robots) on the phone to hear your needs.</p>
 							<p>+48 662206169</p>
 							<p>adrian.janowski@yahoo.com</p>
+							<p><a href="https://www.facebook.com/Katowice-Airport-Transfer-426109534523126"><span>or in our fb website</span></a></p>
 						</article>
 						
 					</section>
@@ -62,6 +62,10 @@
         <input type="email" name="email" required id="field-email" data-error="Wpisz poprawny email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
     </div>
     <div class="form-row">
+        <label for="field-number">Telephone number*</label>
+        <input type="number" name="number" required id="field-number" data-error="Wpisz numer telefonu">
+    </div>
+	<div class="form-row">
         <label for="field-message">Message*</label>
         <textarea name="message" required data-error="Musisz wypełnić pole" id="field-message" pattern=".+"></textarea>
     </div>
@@ -69,13 +73,6 @@
 		<label for="honey">Jeżeli jesteś człowiekiem, nie wypełniaj tego pola</label>
 		<input type="text" name="honey">
 	</span>
-    <div class="form-row">
-        <label class="checkbox-cnt">
-            <input type="checkbox" required data-error="Musisz wypełnić pole" name="regulation">
-            <i class="state" aria-hidden="true"></i>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In libero arcu, vulputate sit amet mattis sit amet, ultrices in erat. Aenean suscipit arcu ac lorem lacinia ut scelerisque turpis commodo.</span>
-        </label>
-    </div>
     <div class="form-row">
         <button type="submit" class="submit-btn">
             Send
